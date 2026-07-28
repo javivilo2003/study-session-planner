@@ -21,19 +21,45 @@ public class Main {
 
     public static Session createSesh(Scanner sc){
         Session sesh;
-        String subject, goal;
-        Integer sessionMin;
+        String subject = "", goal = "";
+        Integer sessionMin = 0;
 
-        System.out.print("\n\nSubject: ");
-        subject = sc.nextLine();
+        do{
 
-        System.out.print("\n\nGoal: ");
-        goal = sc.nextLine();
+            System.out.print("\n\nSubject: ");
+            subject = sc.nextLine();
 
-        System.out.print("\n\nPlanned Minutes: ");
-        sessionMin = Integer.parseInt(sc.nextLine());
+            if (subject.isBlank() || subject == null) {
+                System.out.println("Subject cannot be empty. Try again.");
+            }
+            
+        } while (subject.length() <= 0);
+        
+        do{
 
-        sesh = new Session(subject, goal, sessionMin);
+            System.out.print("\n\nGoal: ");
+            goal = sc.nextLine();
+
+            if (goal.isBlank() || goal == null) {
+                System.out.println("Goal cannot be empty. Try again.");
+            }
+
+        } while (goal.length() <= 0);
+
+        do {
+            
+            try {
+                System.out.print("\n\nPlanned Minutes: ");
+                sessionMin = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e){
+                    if (sessionMin <= 0 || sessionMin == null) {
+                    System.out.println("The session's minutes cannot be equal or less than 0. Try again.");
+                }
+            }
+        
+        } while (sessionMin <= 0);
+
+        sesh = new Session(subject, goal, sessionMin, Status.PLANNED);
 
         return sesh;
     }

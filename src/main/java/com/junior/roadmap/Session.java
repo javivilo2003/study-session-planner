@@ -5,11 +5,21 @@ public class Session {
     String subject;
     String goal;
     Integer sessionMin;
+    Status status;
+
+    public Session (){}
 
     public Session(String subject, String goal, Integer sessionMin){
         this.subject = subject;
         this.goal = goal;
         this.sessionMin = sessionMin;
+    }
+
+    public Session(String subject, String goal, Integer sessionMin, Status status){
+        this.subject = subject;
+        this.goal = goal;
+        this.sessionMin = sessionMin;
+        this.status = status;
     }
 
     public String getSubject() {
@@ -36,12 +46,22 @@ public class Session {
         this.sessionMin = sessionMin;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    
     @Override
     public String toString() {
         return "[\nSubject: " + getSubject() + 
                 "\nGoal: " + getGoal() + 
                 "\nPlanned minutes: " + getSessionMin() + "\n]";
     }
+
+    
 
     
 }
