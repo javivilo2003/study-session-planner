@@ -13,6 +13,7 @@ public class Session {
         this.subject = subject;
         this.goal = goal;
         this.sessionMin = sessionMin;
+        status = Status.PLANNED;
     }
 
     public Session(String subject, String goal, Integer sessionMin, Status status){
@@ -58,10 +59,7 @@ public class Session {
     public String toString() {
         return "[\nSubject: " + getSubject() + 
                 "\nGoal: " + getGoal() + 
-                "\nPlanned minutes: " + getSessionMin() + "\n]";
+                "\nPlanned minutes: " + getSessionMin() + 
+                "\nStatus: " +  status + " ]";
     }
-
-    
-
-    
 }

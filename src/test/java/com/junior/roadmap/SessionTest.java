@@ -67,6 +67,6 @@ public class SessionTest {
     public void testToString() {
         Session session = new Session("Math", "Practice algebra", 45);
 
-        assertEquals("[\nSubject: Math\nGoal: Practice algebra\nPlanned minutes: 45\n]", session.toString());
+        assertEquals("[\nSubject: Math\nGoal: Practice algebra\nPlanned minutes: 45\nStatus: PLANNED ]", session.toString());
     }
 }
