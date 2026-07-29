@@ -65,11 +65,17 @@ public class Main {
                 if (sessionMin == null || sessionMin <= 0) {
                     throw new IllegalArgumentException();
                 } 
+
+                if (sessionMin > 480) {
+                    throw new Exception("The session length must not be longer than 480 minutes.");
+                }
             } catch (IllegalArgumentException e) {
-                System.out.println("The session's minutes must be numbers and cannot be equal, less than 0 or empty. Try again.");
+                System.out.println("The session's minutes must be numbers and cannot be equal, less than 0 or empty.");
+            } catch (Exception e){
+                System.out.println(e.getMessage());
             }
         
-        } while (sessionMin <= 0 || sessionMin == 0);
+        } while (sessionMin <= 0 || sessionMin == 0 || sessionMin >= 480);
 
         sesh = new Session(subject, goal, sessionMin);
 
@@ -110,10 +116,9 @@ public class Main {
                 case 2: 
                     System.out.println("Showing past study sessions...\n");
                     if (sessionList.size() >=1) {
-                        int i = 0;
+                    
                         for (Session session : sessionList) {
-                            i++;
-                            System.out.println("\nSession " + i + ": " + session);
+                            System.out.println(session);
                         }
 
                         System.out.println("\nThat is all.\n");

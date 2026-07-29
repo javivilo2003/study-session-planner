@@ -1,7 +1,10 @@
 package com.junior.roadmap;
 
+import java.util.UUID;
+
 public class Session {
     
+    UUID id;
     String subject;
     String goal;
     Integer sessionMin;
@@ -10,6 +13,7 @@ public class Session {
     public Session (){}
 
     public Session(String subject, String goal, Integer sessionMin){
+        id = UUID.randomUUID();
         this.subject = subject;
         this.goal = goal;
         this.sessionMin = sessionMin;
@@ -17,12 +21,30 @@ public class Session {
     }
 
     public Session(String subject, String goal, Integer sessionMin, Status status){
+        id = UUID.randomUUID();
         this.subject = subject;
         this.goal = goal;
         this.sessionMin = sessionMin;
         this.status = status;
     }
 
+    // For testing toString() method
+    public Session(UUID id, String subject, String goal, Integer sessionMin, Status status) {
+        this.id = id;
+        this.subject = subject;
+        this.goal = goal;
+        this.sessionMin = sessionMin;
+        this.status = status;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    
     public String getSubject() {
         return subject;
     }
@@ -57,9 +79,10 @@ public class Session {
     
     @Override
     public String toString() {
-        return "[\nSubject: " + getSubject() + 
+        return  "\nSession ID " + getId() + ": [" +
+                "\nSubject: " + getSubject() + 
                 "\nGoal: " + getGoal() + 
                 "\nPlanned minutes: " + getSessionMin() + 
                 "\nStatus: " +  status + " ]";
-    }
+    }  
 }

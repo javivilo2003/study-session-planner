@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.UUID;
+
 public class SessionTest {
 
     @Test
@@ -65,8 +67,9 @@ public class SessionTest {
 
     @Test
     public void testToString() {
-        Session session = new Session("Math", "Practice algebra", 45);
+        UUID id = UUID.randomUUID();
+        Session session = new Session(id, "Math", "Practice algebra", 45, Status.PLANNED);
 
-        assertEquals("[\nSubject: Math\nGoal: Practice algebra\nPlanned minutes: 45\nStatus: PLANNED ]", session.toString());
+        assertEquals("\nSession ID " + id + ": [\nSubject: Math\nGoal: Practice algebra\nPlanned minutes: 45\nStatus: PLANNED ]", session.toString());
     }
 }
