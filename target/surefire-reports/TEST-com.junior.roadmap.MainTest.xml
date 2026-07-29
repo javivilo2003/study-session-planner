@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.roadmap.MainTest" time="0.037" tests="3" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.roadmap.MainTest" time="0.04" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260728133940824_3.jar /Users/javier/Developer/study-session-planner/target/surefire 2026-07-28T13-39-40_766-jvmRun1 surefire-20260728133940824_1tmp surefire_0-20260728133940824_2tmp"/>
+    <property name="sun.java.command" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260728142809069_3.jar /Users/javier/Developer/study-session-planner/target/surefire 2026-07-28T14-28-09_012-jvmRun1 surefire-20260728142809069_1tmp surefire_0-20260728142809069_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/javier/Developer/study-session-planner/target/test-classes:/Users/javier/Developer/study-session-planner/target/classes:/Users/javier/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/javier/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260728133940824_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260728142809069_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21.0.5+11-LTS"/>
@@ -58,7 +58,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="shouldCreateSessionFromScannerInput" classname="com.junior.roadmap.MainTest" time="0.012">
+  <testcase name="shouldCreateSessionFromScannerInput" classname="com.junior.roadmap.MainTest" time="0.016">
     <system-out><![CDATA[
 
 Subject: 
@@ -68,37 +68,40 @@ Goal:
 Planned Minutes: ]]></system-out>
   </testcase>
   <testcase name="cratesValidSession" classname="com.junior.roadmap.MainTest" time="0.0"/>
-  <testcase name="rejectsEmptySubject" classname="com.junior.roadmap.MainTest" time="0.001">
-    <failure message="expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown
-	at org.junit.Assert.assertThrows(Assert.java:1028)
-	at org.junit.Assert.assertThrows(Assert.java:981)
-	at com.junior.roadmap.MainTest.rejectsEmptySubject(MainTest.java:36)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:316)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:240)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:214)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:155)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></failure>
+  <testcase name="rejectsEmptyGoalThenAcceptsValidGoal" classname="com.junior.roadmap.MainTest" time="0.001">
+    <system-out><![CDATA[
+
+Subject: 
+
+Goal: Goal cannot be empty. Try again.
+
+
+Goal: 
+
+Planned Minutes: ]]></system-out>
+  </testcase>
+  <testcase name="rejectsInvalidMinutesThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.001">
+    <system-out><![CDATA[
+
+Subject: 
+
+Goal: 
+
+Planned Minutes: The session's minutes must be numbers and cannot be equal, less than 0 or empty. Try again.
+
+
+Planned Minutes: ]]></system-out>
+  </testcase>
+  <testcase name="rejectsEmptySubjectThenAcceptsValidSubject" classname="com.junior.roadmap.MainTest" time="0.0">
+    <system-out><![CDATA[
+
+Subject: Subject cannot be empty. Try again.
+
+
+Subject: 
+
+Goal: 
+
+Planned Minutes: ]]></system-out>
   </testcase>
 </testsuite>

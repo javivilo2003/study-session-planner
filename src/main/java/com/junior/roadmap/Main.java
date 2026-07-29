@@ -38,7 +38,7 @@ public class Main {
                 System.out.println("Subject cannot be empty. Try again.");
             }
             
-        } while (subject.isBlank() || subject == null);
+        } while (subject == null || subject.isBlank());
         
         do{
 
@@ -54,7 +54,7 @@ public class Main {
             }
             
 
-        } while (goal.isBlank() || goal == null);
+        } while (goal == null || goal.isBlank());
 
         do {
             
@@ -62,7 +62,7 @@ public class Main {
                 System.out.print("\n\nPlanned Minutes: ");
                 sessionMin = Integer.parseInt(sc.nextLine());
 
-                if (sessionMin <= 0 || sessionMin == null) {
+                if (sessionMin == null || sessionMin <= 0) {
                     throw new IllegalArgumentException();
                 } 
             } catch (IllegalArgumentException e) {

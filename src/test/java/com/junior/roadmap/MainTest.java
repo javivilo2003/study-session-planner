@@ -32,10 +32,37 @@ public class MainTest {
     }
 
     @Test
-    public void rejectsEmptySubject(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Session("", "Practice Big O", 30);
-        });
+    public void rejectsEmptySubjectThenAcceptsValidSubject() {
+        Scanner sc = new Scanner("\nJava\nPractice Big O\n30\n");
+
+        Session sesh = Main.createSesh(sc);
+
+        assertEquals("Java", sesh.getSubject());
+        assertEquals("Practice Big O", sesh.getGoal());
+        assertEquals(Integer.valueOf(30), sesh.getSessionMin());
+        assertEquals(Status.PLANNED, sesh.getStatus());
+    }
+
+    @Test
+    public void rejectsEmptyGoalThenAcceptsValidGoal() {
+        Scanner sc = new Scanner("Java\n\nPractice Big O\n30\n");
+
+        Session sesh = Main.createSesh(sc);
+
+        assertEquals("Java", sesh.getSubject());
+        assertEquals("Practice Big O", sesh.getGoal());
+        assertEquals(Integer.valueOf(30), sesh.getSessionMin());
+    }
+
+    @Test
+    public void rejectsInvalidMinutesThenAcceptsValidMinutes() {
+        Scanner sc = new Scanner("Java\nPractice Big O\nabc\n30\n");
+
+        Session sesh = Main.createSesh(sc);
+
+        assertEquals("Java", sesh.getSubject());
+        assertEquals("Practice Big O", sesh.getGoal());
+        assertEquals(Integer.valueOf(30), sesh.getSessionMin());
     }
 
 }
