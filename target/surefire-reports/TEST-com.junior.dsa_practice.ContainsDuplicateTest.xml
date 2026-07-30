@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.roadmap.SessionTest" time="0.0" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.dsa_practice.ContainsDuplicateTest" time="0.0" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -58,12 +58,6 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testGetSubject" classname="com.junior.roadmap.SessionTest" time="0.0"/>
-  <testcase name="shouldCreateSessionWithSubjectGoalAndMinutes" classname="com.junior.roadmap.SessionTest" time="0.0"/>
-  <testcase name="testToString" classname="com.junior.roadmap.SessionTest" time="0.0"/>
-  <testcase name="testGetSessionMin" classname="com.junior.roadmap.SessionTest" time="0.0"/>
-  <testcase name="testGetGoal" classname="com.junior.roadmap.SessionTest" time="0.0"/>
-  <testcase name="testSetSessionMin" classname="com.junior.roadmap.SessionTest" time="0.0"/>
-  <testcase name="testSetSubject" classname="com.junior.roadmap.SessionTest" time="0.0"/>
-  <testcase name="testSetGoal" classname="com.junior.roadmap.SessionTest" time="0.0"/>
+  <testcase name="testDoesNotContainsDuplicate" classname="com.junior.dsa_practice.ContainsDuplicateTest" time="0.0"/>
+  <testcase name="testContainsDuplicate" classname="com.junior.dsa_practice.ContainsDuplicateTest" time="0.0"/>
 </testsuite>
