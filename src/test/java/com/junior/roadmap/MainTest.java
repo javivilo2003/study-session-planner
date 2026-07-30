@@ -21,7 +21,7 @@ public class MainTest {
     }
 
     @Test
-    public void cratesValidSession(){
+    public void cratesValidSession() throws InvalidSessionException{
         Session session = new Session("Java", "DSA", Integer.valueOf(60));
 
         assertEquals("Java", session.getSubject());
@@ -64,5 +64,37 @@ public class MainTest {
         assertEquals(Integer.valueOf(30), sesh.getSessionMin());
     }
 
+    @Test
+    public void rejectsInvalidMinutesZeroThenAcceptsValidMinutes() {
+        Scanner sc = new Scanner("Java\nPractice Big O\n0\n30\n");
+
+        Session sesh = Main.createSesh(sc);
+
+        assertEquals("Java", sesh.getSubject());
+        assertEquals("Practice Big O", sesh.getGoal());
+        assertEquals(Integer.valueOf(30), sesh.getSessionMin());
+    }
+
+    @Test
+    public void rejectsInvalidMinutesNegativeThenAcceptsValidMinutes() {
+        Scanner sc = new Scanner("Java\nPractice Big O\n-30\n30\n");
+
+        Session sesh = Main.createSesh(sc);
+
+        assertEquals("Java", sesh.getSubject());
+        assertEquals("Practice Big O", sesh.getGoal());
+        assertEquals(Integer.valueOf(30), sesh.getSessionMin());
+    }
+
+    @Test
+    public void rejectsInvalidMinutesExceededValueThenAcceptsValidMinutes() {
+        Scanner sc = new Scanner("Java\nPractice Big O\n481\n30\n");
+
+        Session sesh = Main.createSesh(sc);
+
+        assertEquals("Java", sesh.getSubject());
+        assertEquals("Practice Big O", sesh.getGoal());
+        assertEquals(Integer.valueOf(30), sesh.getSessionMin());
+    }
 }
 

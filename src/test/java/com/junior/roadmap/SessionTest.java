@@ -9,7 +9,7 @@ import java.util.UUID;
 public class SessionTest {
 
     @Test
-    public void shouldCreateSessionWithSubjectGoalAndMinutes() {
+    public void shouldCreateSessionWithSubjectGoalAndMinutes() throws InvalidSessionException {
         Session session = new Session("Math", "Practice algebra", 45);
 
         assertEquals("Math", session.getSubject());
@@ -18,28 +18,28 @@ public class SessionTest {
     }
 
     @Test
-    public void testGetGoal() {
+    public void testGetGoal() throws InvalidSessionException {
         Session session = new Session("Science", "Read chapter 3", 30);
 
         assertEquals("Read chapter 3", session.getGoal());
     }
 
     @Test
-    public void testGetSessionMin() {
+    public void testGetSessionMin() throws InvalidSessionException {
         Session session = new Session("History", "Review notes", 25);
 
         assertEquals(Integer.valueOf(25), session.getSessionMin());
     }
 
     @Test
-    public void testGetSubject() {
+    public void testGetSubject() throws InvalidSessionException {
         Session session = new Session("English", "Write outline", 20);
 
         assertEquals("English", session.getSubject());
     }
 
     @Test
-    public void testSetGoal() {
+    public void testSetGoal() throws InvalidSessionException {
         Session session = new Session("Math", "Practice algebra", 45);
 
         session.setGoal("Finish worksheet");
@@ -48,7 +48,7 @@ public class SessionTest {
     }
 
     @Test
-    public void testSetSessionMin() {
+    public void testSetSessionMin() throws InvalidSessionException{
         Session session = new Session("Math", "Practice algebra", 45);
 
         session.setSessionMin(60);
@@ -57,7 +57,7 @@ public class SessionTest {
     }
 
     @Test
-    public void testSetSubject() {
+    public void testSetSubject() throws InvalidSessionException {
         Session session = new Session("Math", "Practice algebra", 45);
 
         session.setSubject("Physics");
@@ -66,7 +66,7 @@ public class SessionTest {
     }
 
     @Test
-    public void testToString() {
+    public void testToString() throws InvalidSessionException{
         UUID id = UUID.randomUUID();
         Session session = new Session(id, "Math", "Practice algebra", 45, Status.PLANNED);
 

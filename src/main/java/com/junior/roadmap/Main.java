@@ -21,7 +21,7 @@ public class Main {
     }
 
     public static Session createSesh(Scanner sc){
-        Session sesh;
+        Session sesh = null;
         String subject = "", goal = "";
         Integer sessionMin = 0;
 
@@ -31,10 +31,10 @@ public class Main {
                 subject = sc.nextLine();
 
                 if (subject.isBlank() || subject == null) {
-                    throw new IllegalArgumentException();
+                    throw new InvalidSessionException();
                 }
 
-            } catch (IllegalArgumentException e) {
+            } catch (InvalidSessionException e) {
                 System.out.println("Subject cannot be empty. Try again.");
             }
             
@@ -47,7 +47,7 @@ public class Main {
                 goal = sc.nextLine();
 
                 if (goal.isBlank() || goal == null) {
-                    throw new IllegalArgumentException();
+                    throw new InvalidSessionException();
                 }
             } catch (Exception e) {
                 System.out.println("Goal cannot be empty. Try again.");
@@ -61,25 +61,32 @@ public class Main {
             try {
                 System.out.print("\n\nPlanned Minutes: ");
                 sessionMin = Integer.parseInt(sc.nextLine());
-
+            
                 if (sessionMin == null || sessionMin <= 0) {
-                    throw new IllegalArgumentException();
+                    throw new InvalidSessionException("The session's minutes cannot be equal or less than 0. Try again.");
                 } 
 
                 if (sessionMin > 480) {
-                    throw new Exception("The session length must not be longer than 480 minutes.");
+                    throw new InvalidSessionException("Session exceeded the maximum length for a session 480.");
                 }
-            } catch (IllegalArgumentException e) {
-                System.out.println("The session's minutes must be numbers and cannot be equal, less than 0 or empty.");
-            } catch (Exception e){
-                System.out.println(e.getMessage());
+
+            } catch (InvalidSessionException e) {
+               System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                    System.out.println("Planned minutes must be a number.");
             }
         
-        } while (sessionMin <= 0 || sessionMin == 0 || sessionMin >= 480);
+        } while (sessionMin <= 0 || sessionMin == 0 || sessionMin > 480);
 
-        sesh = new Session(subject, goal, sessionMin);
+
+        try {
+            sesh = new Session(subject, goal, sessionMin);
+        } catch (InvalidSessionException e) {
+            e.printStackTrace();
+        }
 
         return sesh;
+            
     }
 
     public static void main(String[] args) {
@@ -87,8 +94,17 @@ public class Main {
         List<Session> sessionList = new ArrayList<>(); 
         Integer option = -1;
 
-        sessionList.add(new Session("Java", "Review constructors", 45));
-        sessionList.add(new Session("DSA", "Practice arrays", 30));
+        try {
+            sessionList.add(new Session("Java", "Review constructors", 45));
+        } catch (InvalidSessionException e) {
+
+            e.printStackTrace();
+        }
+        try {
+            sessionList.add(new Session("DSA", "Practice arrays", 30));
+        } catch (InvalidSessionException e) {
+            e.printStackTrace();
+        }
 
         do{
             menu();
@@ -116,9 +132,10 @@ public class Main {
                 case 2: 
                     System.out.println("Showing past study sessions...\n");
                     if (sessionList.size() >=1) {
-                    
+                        int i = 0;
                         for (Session session : sessionList) {
-                            System.out.println(session);
+                            i++;
+                            System.out.println("\nSession " + i + ": " + session);
                         }
 
                         System.out.println("\nThat is all.\n");

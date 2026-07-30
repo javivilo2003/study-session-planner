@@ -12,28 +12,28 @@ public class Session {
 
     public Session (){}
 
-    public Session(String subject, String goal, Integer sessionMin){
-        id = UUID.randomUUID();
-        this.subject = subject;
-        this.goal = goal;
-        this.sessionMin = sessionMin;
+    public Session(String subject, String goal, Integer sessionMin) throws InvalidSessionException {
+        setId(id);
+        setSubject(subject);
+        setGoal(goal);
+        setSessionMin(sessionMin);
         status = Status.PLANNED;
     }
 
-    public Session(String subject, String goal, Integer sessionMin, Status status){
-        id = UUID.randomUUID();
-        this.subject = subject;
-        this.goal = goal;
-        this.sessionMin = sessionMin;
+    public Session(String subject, String goal, Integer sessionMin, Status status) throws InvalidSessionException {
+        setId(id);
+        setSubject(subject);
+        setGoal(goal);
+        setSessionMin(sessionMin);
         this.status = status;
     }
 
     // For testing toString() method
-    public Session(UUID id, String subject, String goal, Integer sessionMin, Status status) {
-        this.id = id;
-        this.subject = subject;
-        this.goal = goal;
-        this.sessionMin = sessionMin;
+    public Session(UUID id, String subject, String goal, Integer sessionMin, Status status) throws InvalidSessionException {
+        setId(id);
+        setSubject(subject);
+        setGoal(goal);
+        setSessionMin(sessionMin);
         this.status = status;
     }
 
@@ -42,6 +42,11 @@ public class Session {
     }
 
     public void setId(UUID id) {
+
+        if (id == null) {
+           id = UUID.randomUUID(); 
+        }
+        
         this.id = id;
     }
     
@@ -49,7 +54,12 @@ public class Session {
         return subject;
     }
 
-    public void setSubject(String subject) {
+    public void setSubject(String subject) throws InvalidSessionException {
+        
+        if (subject == null || subject.isBlank()) {
+            throw new InvalidSessionException("Subject cannot be blank.");
+        } 
+        
         this.subject = subject;
     }
 
@@ -57,7 +67,12 @@ public class Session {
         return goal;
     }
 
-    public void setGoal(String goal) {
+    public void setGoal(String goal) throws InvalidSessionException{
+
+        if (goal == null || goal.isBlank()) {
+            throw new InvalidSessionException("The goal cannot be blank.");
+        } 
+
         this.goal = goal;
     }
 
@@ -65,7 +80,20 @@ public class Session {
         return sessionMin;
     }
 
-    public void setSessionMin(Integer sessionMin) {
+    public void setSessionMin(Integer sessionMin) throws InvalidSessionException {
+
+        if (sessionMin == null) {
+            throw new InvalidSessionException("The session's minutes cannot be blank.");
+        } 
+
+        if (sessionMin <= 0) {
+            throw new InvalidSessionException("The session's minutes must be greater than 0.");
+        }
+
+        if (sessionMin > 480) {
+            throw new InvalidSessionException("The session cannot exceed 480 minutes. Session is too long");
+        }
+
         this.sessionMin = sessionMin;
     }
 
