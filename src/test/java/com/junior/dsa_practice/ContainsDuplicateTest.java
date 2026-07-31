@@ -1,6 +1,8 @@
 package com.junior.dsa_practice;
 
-import static org.junit.Assert.assertSame;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -9,13 +11,13 @@ public class ContainsDuplicateTest {
     public void testContainsDuplicate() {
         Integer[] numbers = {1, 2, 3, 1};
 
-        assertSame(ContainsDuplicate.containsDuplicate(numbers), true);
+        assertTrue(ContainsDuplicate.containsDuplicate(numbers));
     }
 
     @Test
-    public void testDoesNotContainsDuplicate() {
+    public void testDoesNotContainDuplicate() {
         Integer[] numbers = {1, 2, 3, 4};
 
-        assertSame(ContainsDuplicate.containsDuplicate(numbers), false);
+        assertFalse(ContainsDuplicate.containsDuplicate(numbers));
     }
 }

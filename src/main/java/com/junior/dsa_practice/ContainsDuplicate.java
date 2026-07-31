@@ -8,9 +8,9 @@ public class ContainsDuplicate {
     public static boolean containsDuplicate(Integer[] array) {
     Set<Integer> appearances = new HashSet<Integer>();
 
-        for (int i = 0; i < array.length; i++) {
-            if (!appearances.contains(array[i])) {
-                appearances.add(array[i]);
+        for (Integer i : array) {
+            if (!appearances.contains(i)) {
+                appearances.add(i);
             } else {
                 return true;
             }
