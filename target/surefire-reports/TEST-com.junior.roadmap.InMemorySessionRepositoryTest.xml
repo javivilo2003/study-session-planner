@@ -12,8 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="VE"/>
     <property name="sun.boot.library.path" value="/Users/javier/.sdkman/candidates/java/21.0.3-tem/lib"/>
-    <property name="sun.java.command" value="/Users/javier/Documents/Studying/study-session-planner/target/surefire/surefirebooter-20260731170522283_3.jar /Users/javier/Documents/Studying/study-session-planner/target/surefire 2026-07-31T17-05-21_970-jvmRun1 surefire-20260731170522283_1tmp surefire_0-20260731170522283_2tmp"/>
-    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.java.command" value="/Users/javier/Documents/Studying/study-session-planner/target/surefire/surefirebooter-20260731183139331_3.jar /Users/javier/Documents/Studying/study-session-planner/target/surefire 2026-07-31T18-31-39_295-jvmRun1 surefire-20260731183139331_1tmp surefire_0-20260731183139331_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/javier/Documents/Studying/study-session-planner/target/test-classes:/Users/javier/Documents/Studying/study-session-planner/target/classes:/Users/javier/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/javier/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -26,12 +25,11 @@
     <property name="basedir" value="/Users/javier/Documents/Studying/study-session-planner"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/javier/Documents/Studying/study-session-planner/target/surefire/surefirebooter-20260731170522283_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/javier/Documents/Studying/study-session-planner/target/surefire/surefirebooter-20260731183139331_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21.0.3+9-LTS"/>
     <property name="user.name" value="javier"/>
     <property name="stdout.encoding" value="UTF-8"/>
@@ -55,10 +53,9 @@
     <property name="java.vendor" value="Eclipse Adoptium"/>
     <property name="java.vm.version" value="21.0.3+9-LTS"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
   <testcase name="findAllDoesNotExposeInternalListDirectly" classname="com.junior.roadmap.InMemorySessionRepositoryTest" time="0.01"/>
-  <testcase name="savingTwoSessionsAppearInFindAll" classname="com.junior.roadmap.InMemorySessionRepositoryTest" time="0.004"/>
+  <testcase name="savingTwoSessionsAppearInFindAll" classname="com.junior.roadmap.InMemorySessionRepositoryTest" time="0.005"/>
   <testcase name="afterSavingSessionAppearsInFindAll" classname="com.junior.roadmap.InMemorySessionRepositoryTest" time="0.001"/>
 </testsuite>
