@@ -6,6 +6,9 @@ import java.util.Scanner;
 public class Anagram {
 
     public static boolean isAnagram (String word, String word2) {
+        if (word.length() != word2.length()) {
+            return false;
+        }
 
         int[] check = new int[26];
         int[] check2 = new int[26];
@@ -33,7 +36,7 @@ public class Anagram {
         word2 = sc.nextLine();
 
 
-        if (word1.length() == word2.length() && isAnagram(word1, word2)) {
+        if (isAnagram(word1, word2)) {
             System.out.println("The words are anagrams");
         } else {
             System.out.println("They are not anagrams.");
