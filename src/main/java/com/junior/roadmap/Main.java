@@ -1,7 +1,5 @@
 package com.junior.roadmap;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -91,17 +89,17 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Session> sessionList = new ArrayList<>(); 
+        SessionRepository repository = new InMemorySessionRepository();
         Integer option = -1;
 
         try {
-            sessionList.add(new Session("Java", "Review constructors", 45));
+            repository.save(new Session("Java", "Review constructors", 45));
         } catch (InvalidSessionException e) {
 
             e.printStackTrace();
         }
         try {
-            sessionList.add(new Session("DSA", "Practice arrays", 30));
+            repository.save(new Session("DSA", "Practice arrays", 30));
         } catch (InvalidSessionException e) {
             e.printStackTrace();
         }
@@ -119,7 +117,7 @@ public class Main {
                 case 1:
                     Session sesh = createSesh(sc);
                     if (sesh.getClass() == Session.class) {
-                        sessionList.add(sesh);
+                        repository.save(sesh);
                         System.out.println("\nSession: " + sesh.toString());
                         System.out.println("\nSession created\n");
                     } else {
@@ -131,9 +129,9 @@ public class Main {
             
                 case 2: 
                     System.out.println("Showing past study sessions...\n");
-                    if (sessionList.size() >=1) {
+                    if (repository.findAll().size() >=1) {
                         int i = 0;
-                        for (Session session : sessionList) {
+                        for (Session session : repository.findAll()) {
                             i++;
                             System.out.println("\nSession " + i + ": " + session);
                         }
