@@ -107,10 +107,11 @@ public class Session {
     
     @Override
     public String toString() {
-        return  "\nSession ID " + getId() + ": [" +
+        return  "\nSession ID " + getId() +
                 "\nSubject: " + getSubject() + 
                 "\nGoal: " + getGoal() + 
                 "\nPlanned minutes: " + getSessionMin() + 
-                "\nStatus: " +  status + " ]";
+                "\nStatus: " +  status + 
+                "\n-----------------------------------------------\n";
     }  
 }

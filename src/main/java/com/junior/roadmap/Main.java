@@ -15,7 +15,8 @@ public class Main {
 
                 1. Create study session
                 2. List study sessions
-                3. Exit
+                3. Search by subject
+                4. Exit
 
                 """);
     }
@@ -89,6 +90,18 @@ public class Main {
             
     }
 
+    public static List<Session> findBySubject(List<Session> sessions, String input){
+        List <Session> matches = new ArrayList<>();
+
+        for (Session session : sessions) {
+            if (session.getSubject().equalsIgnoreCase(input)) {
+                matches.add(session);
+            }
+        }
+
+        return matches;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Session> sessionList = new ArrayList<>(); 
@@ -147,16 +160,23 @@ public class Main {
                     break;
 
                 case 3: 
-                System.out.println("Have a good day!!!");
+                    String search;
+                    System.out.print("Search for subject: ");
+                    search = sc.nextLine();
+                    System.out.println(findBySubject(sessionList, search).toString());
+                    break;
+
+                case 4: 
+                    System.out.println("Have a good day!!!");
                     break;
 
                 default:
-                    System.out.println("Option must be a number from 1-3. Please try again.\n");
+                    System.out.println("Option must be a number from 1-4. Please try again.\n");
 
                     sc.reset();
                     break;
             }
-        } while (option != 3);
+        } while (option != 4);
 
         sc.close();
     }
