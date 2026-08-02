@@ -17,4 +17,19 @@ public class InMemorySessionRepository implements SessionRepository{
         sessions.add(sesh);
     }
 
+    @Override
+    public List<Session> findBySubject(List<Session> sessions, String input) {
+        List <Session> matches = new ArrayList<>();
+
+        for (Session session : sessions) {
+            if (session.getSubject().equalsIgnoreCase(input)) {
+                matches.add(session);
+            }
+        }
+
+        return matches;
+    }
+
+    
+
 }

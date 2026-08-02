@@ -88,18 +88,6 @@ public class Main {
             
     }
 
-    public static List<Session> findBySubject(List<Session> sessions, String input){
-        List <Session> matches = new ArrayList<>();
-
-        for (Session session : sessions) {
-            if (session.getSubject().equalsIgnoreCase(input)) {
-                matches.add(session);
-            }
-        }
-
-        return matches;
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         SessionRepository repository = new InMemorySessionRepository();
@@ -161,7 +149,7 @@ public class Main {
                     String search;
                     System.out.print("Search for subject: ");
                     search = sc.nextLine();
-                    System.out.println(findBySubject(sessionList, search).toString());
+                    System.out.println(repository.findBySubject(repository.findAll(), search).toString());
                     break;
 
                 case 4: 
