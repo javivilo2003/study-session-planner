@@ -6,8 +6,6 @@ public class InvalidSessionException extends Exception{
         super(message);
     }
 
-    public InvalidSessionException() {
-       
-    }
+    public InvalidSessionException() {}
 
 }

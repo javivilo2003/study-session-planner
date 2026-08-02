@@ -14,7 +14,8 @@ public class Main {
                 1. Create study session
                 2. List study sessions
                 3. Search by subject
-                4. Exit
+                4. Show total amount of minutes remaining in Planned sessions
+                5. Exit
 
                 """);
     }
@@ -100,7 +101,7 @@ public class Main {
             e.printStackTrace();
         }
         try {
-            repository.save(new Session("DSA", "Practice arrays", 30));
+            repository.save(new Session("DSA", "Practice arrays", 30, Status.COMPLETED));
         } catch (InvalidSessionException e) {
             e.printStackTrace();
         }
@@ -108,7 +109,7 @@ public class Main {
         do{
             menu();
             try {
-                System.out.print("Choose an option 1-3 -> ");
+                System.out.print("Choose an option 1-5 -> ");
                 option = Integer.parseInt(sc.nextLine());
             } catch (Exception e) {
                 System.out.println("That is not a valid option. Please try again.\n");
@@ -129,7 +130,7 @@ public class Main {
                     break;
             
                 case 2: 
-                    System.out.println("Showing past study sessions...\n");
+                    System.out.println("Showing all study sessions...\n");
                     if (repository.findAll().size() >=1) {
                         int i = 0;
                         for (Session session : repository.findAll()) {
@@ -149,10 +150,21 @@ public class Main {
                     String search;
                     System.out.print("Search for subject: ");
                     search = sc.nextLine();
-                    System.out.println(repository.findBySubject(repository.findAll(), search).toString());
+                    String result = repository.findBySubject(repository.findAll(), search).toString();
+                    if (result == null || result.equals("[]")) {
+                        System.out.println("No study sessions created with subject -> \"" + search + "\". Create a new session by going back to the main menu and pressing 1.");
+                    } else {
+                        System.out.println(result);
+                    }
+
+                    sc.reset();
                     break;
 
                 case 4: 
+                    System.out.println("Total minutes remaining in PLANNED sessions: " + repository.showTotalMin(repository.findAll()));
+                    break;
+
+                case 5: 
                     System.out.println("Have a good day!!!");
                     break;
 
@@ -162,7 +174,7 @@ public class Main {
                     sc.reset();
                     break;
             }
-        } while (option != 4);
+        } while (option != 5);
 
         sc.close();
     }

@@ -30,6 +30,16 @@ public class InMemorySessionRepository implements SessionRepository{
         return matches;
     }
 
-    
+    @Override
+    public Integer showTotalMin(List<Session> sessions) {
+        Integer total = 0;
+        for (Session session : sessions) {
+            if (session.getStatus() == Status.PLANNED) {
+                total += session.getSessionMin();
+            }
+        }
+
+        return total;
+    }
 
 }
