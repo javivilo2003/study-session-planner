@@ -169,7 +169,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Option must be a number from 1-4. Please try again.\n");
+                    System.out.println("Option must be a number from 1-5. Please try again.\n");
 
                     sc.reset();
                     break;
