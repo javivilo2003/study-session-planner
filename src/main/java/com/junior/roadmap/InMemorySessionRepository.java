@@ -2,6 +2,7 @@ package com.junior.roadmap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class InMemorySessionRepository implements SessionRepository{
 
@@ -18,7 +19,7 @@ public class InMemorySessionRepository implements SessionRepository{
     }
 
     @Override
-    public List<Session> findBySubject(List<Session> sessions, String input) {
+    public List<Session> findBySubject(String input) {
         List <Session> matches = new ArrayList<>();
 
         for (Session session : sessions) {
@@ -31,7 +32,7 @@ public class InMemorySessionRepository implements SessionRepository{
     }
 
     @Override
-    public Integer showTotalMin(List<Session> sessions) {
+    public Integer showTotalMin() {
         Integer total = 0;
         for (Session session : sessions) {
             if (session.getStatus() == Status.PLANNED) {
@@ -42,4 +43,14 @@ public class InMemorySessionRepository implements SessionRepository{
         return total;
     }
 
+    @Override
+    public Session findById(UUID id){
+
+        for (Session session : sessions) {
+            if (session.getId().equals(id)) {
+                return session;
+            }
+        }
+        return null;
+    }
 }

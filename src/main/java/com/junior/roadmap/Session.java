@@ -6,11 +6,11 @@ public class Session {
     
 
 
-    UUID id;
-    String subject;
-    String goal;
-    Integer sessionMin;
-    Status status;
+    private UUID id;
+    private String subject;
+    private String goal;
+    private Integer sessionMin;
+    private Status status;
 
     public Session (){}
 

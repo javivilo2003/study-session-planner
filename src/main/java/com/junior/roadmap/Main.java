@@ -1,6 +1,7 @@
 package com.junior.roadmap;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Main {
 
@@ -14,8 +15,9 @@ public class Main {
                 1. Create study session
                 2. List study sessions
                 3. Search by subject
-                4. Show total amount of minutes remaining in Planned sessions
-                5. Exit
+                4. Update session
+                5. Show total amount of minutes remaining in Planned sessions
+                6. Exit
 
                 """);
     }
@@ -30,7 +32,7 @@ public class Main {
                 System.out.print("\n\nSubject: ");
                 subject = sc.nextLine();
 
-                if (subject.isBlank() || subject == null) {
+                if (subject == null || subject.isBlank()) {
                     throw new InvalidSessionException();
                 }
 
@@ -46,7 +48,7 @@ public class Main {
                 System.out.print("\n\nGoal: ");
                 goal = sc.nextLine();
 
-                if (goal.isBlank() || goal == null) {
+                if (goal == null || goal.isBlank() ) {
                     throw new InvalidSessionException();
                 }
             } catch (Exception e) {
@@ -89,9 +91,153 @@ public class Main {
             
     }
 
+    public static void updateSesh(Scanner sc, SessionService service, SessionRepository repository){
+        UUID id;
+        System.out.println("\nEnter the id of the Session you would like to update." + repository.findAll().toString());
+        System.out.print("\nEnter the ID here: "); 
+        try{
+            id = UUID.fromString(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("That is not a valid UUID format. Going back to the main menu.");
+            return;
+        }
+
+        Session seshSearch = repository.findById(id);
+        
+        if (seshSearch == null) {
+            System.out.println("This session ID doesn't exist. Going back to the main menu.");
+            return;
+        }
+        System.out.println("""
+                What would you like to update?
+                1. Subject
+                2. Goal
+                3. Session Minutes
+                4. Status
+                """);
+        System.out.print("Enter your choice here: ");
+        Integer choice;
+        try {
+            choice = Integer.parseInt(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("That is not a valid choice format. Going back to the main menu.");
+            return;
+        }
+
+        switch (choice) {
+            case 1:
+                System.out.print("New Subject: ");
+                String newSubject = sc.nextLine();
+                try {
+                    service.updateSubject(id, newSubject);
+                } catch (SessionNotFoundException | InvalidSessionException e) {
+                    e.printStackTrace();
+                    break;
+                }
+                System.out.println("Session subject updated.");
+
+                break;
+
+            case 2:
+                System.out.print("New Goal: ");
+                String newGoal = sc.nextLine();
+                try {
+                    service.updateGoal(id, newGoal);
+                } catch (SessionNotFoundException | InvalidSessionException e) {
+                    e.printStackTrace();
+                    break;
+                }
+                System.out.println("Session goal updated.");
+
+                break;
+
+            case 3:
+                Integer newMin;
+                System.out.print("New Session Minutes: ");
+                try {
+                    newMin = Integer.parseInt(sc.nextLine());
+                } catch (Exception e) {
+                    System.out.println("That is not a valid number format. Going back to the main menu.");
+                    break;
+                }
+                
+                try {
+                    service.updateSessionMin(id, newMin);
+                } catch (SessionNotFoundException | InvalidSessionException e) {
+                    e.printStackTrace();
+                    break;
+                }
+                System.out.println("Session minutes updated.");
+
+                break;
+
+            case 4:
+                Integer newStatus;
+                System.out.println("""
+                        New Status options:
+                        1. PLANNED
+                        2. COMPLETED
+                        3. CANCELLED
+                        """);
+                System.out.print("Enter you choice from 1-3: ");
+                try {
+                    newStatus = Integer.parseInt(sc.nextLine());
+                } catch (Exception e) {
+                    System.out.println("That is not a valid number format. Going back to the main menu.");
+                    break;
+                }
+                
+
+                switch (newStatus) {
+                    case 1:
+                        try {
+                            service.updateStatus(id, Status.PLANNED);
+                        } catch (SessionNotFoundException | InvalidSessionException e) {
+                            e.printStackTrace();
+                            break;
+                        }
+                        System.out.println("Session status updated.");
+
+                        break;
+                
+                    case 2:
+                        try {
+                            service.updateStatus(id, Status.COMPLETED);
+                        } catch (SessionNotFoundException | InvalidSessionException e) {
+                            e.printStackTrace();
+                            break;
+                        }
+                        System.out.println("Session status updated.");
+
+                        break;
+
+                    case 3: 
+                        try {
+                            service.updateStatus(id, Status.CANCELLED);
+                        } catch (SessionNotFoundException | InvalidSessionException e) {
+                            e.printStackTrace();
+                            break;
+                        }
+                        System.out.println("Session status updated.");
+
+                        break;
+
+                    default:
+                        System.out.println("That is not an option. Going back to the main menu.");
+                        break;
+                }
+                break;
+            
+            default:
+                System.out.println("That is not an option. Going back to the main menu.");
+                break;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         SessionRepository repository = new InMemorySessionRepository();
+        SessionService service = new SessionService(repository);
         Integer option = -1;
 
         try {
@@ -109,7 +255,7 @@ public class Main {
         do{
             menu();
             try {
-                System.out.print("Choose an option 1-5 -> ");
+                System.out.print("Choose an option 1-6 -> ");
                 option = Integer.parseInt(sc.nextLine());
             } catch (Exception e) {
                 System.out.println("That is not a valid option. Please try again.\n");
@@ -150,7 +296,7 @@ public class Main {
                     String search;
                     System.out.print("Search for subject: ");
                     search = sc.nextLine();
-                    String result = repository.findBySubject(repository.findAll(), search).toString();
+                    String result = repository.findBySubject(search).toString();
                     if (result == null || result.equals("[]")) {
                         System.out.println("No study sessions created with subject -> \"" + search + "\". Create a new session by going back to the main menu and pressing 1.");
                     } else {
@@ -160,21 +306,23 @@ public class Main {
                     sc.reset();
                     break;
 
-                case 4: 
-                    System.out.println("Total minutes remaining in PLANNED sessions: " + repository.showTotalMin(repository.findAll()));
+                case 4:                 
+                    updateSesh(sc, service, repository);
                     break;
 
                 case 5: 
+                    System.out.println("Total minutes remaining in PLANNED sessions: " + repository.showTotalMin());
+                    break;
+
+                case 6: 
                     System.out.println("Have a good day!!!");
                     break;
 
                 default:
-                    System.out.println("Option must be a number from 1-5. Please try again.\n");
-
-                    sc.reset();
+                    System.out.println("Option must be a number from 1-6. Please try again.\n");
                     break;
             }
-        } while (option != 5);
+        } while (option != 6);
 
         sc.close();
     }

@@ -2,6 +2,7 @@ package com.junior.roadmap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 import java.util.UUID;
@@ -60,7 +61,7 @@ public class InMemorySessionRepositoryTest {
         repository.save(new Session(id3, "Java", "Practice java", 60, Status.PLANNED));
 
         assertEquals("[\nSession ID " + id2 + "\nSubject: Java\nGoal: Practice java\nPlanned minutes: 60\nStatus: PLANNED\n-----------------------------------------------\n, " +
-        "\nSession ID " + id3 + "\nSubject: Java\nGoal: Practice java\nPlanned minutes: 60\nStatus: PLANNED\n-----------------------------------------------\n]", repository.findBySubject(repository.findAll(), "java").toString());
+        "\nSession ID " + id3 + "\nSubject: Java\nGoal: Practice java\nPlanned minutes: 60\nStatus: PLANNED\n-----------------------------------------------\n]", repository.findBySubject( "java").toString());
     }
 
     @Test
@@ -74,8 +75,29 @@ public class InMemorySessionRepositoryTest {
         repository.save(new Session(id2, "Java", "Practice java", 60, Status.PLANNED));
         repository.save(new Session(id3, "Java", "Practice java", 60, Status.PLANNED));
 
-        assertEquals("[]", repository.findBySubject(repository.findAll(), "dsa").toString());
+        assertEquals("[]", repository.findBySubject( "dsa").toString());
     }
 
-    
+
+    @Test
+    public void findsSessionWithUUID() throws InvalidSessionException,  SessionNotFoundException {
+        SessionRepository repository = new InMemorySessionRepository();
+        UUID id1 = UUID.randomUUID(); 
+        repository.save(new Session(id1, "Math", "Practice algebra", 45, Status.PLANNED));
+        
+        Session found = repository.findById(id1);
+        assertEquals(repository.findAll().getFirst(), found);
+    }
+
+    @Test
+    public void sessionWithUUIDNotFound() throws InvalidSessionException, SessionNotFoundException {
+        SessionRepository repository = new InMemorySessionRepository();
+        UUID id1 = UUID.randomUUID(); 
+        UUID id2 = UUID.randomUUID(); 
+
+        repository.save(new Session(id1, "Math", "Practice algebra", 45, Status.PLANNED));
+        
+        Session found = repository.findById(id2);
+        assertNull(found);
+    }
 }

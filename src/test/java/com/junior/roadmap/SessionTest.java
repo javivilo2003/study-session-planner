@@ -70,6 +70,6 @@ public class SessionTest {
         UUID id = UUID.randomUUID();
         Session session = new Session(id, "Math", "Practice algebra", 45, Status.PLANNED);
 
-        assertEquals("\nSession ID " + id + ": [\nSubject: Math\nGoal: Practice algebra\nPlanned minutes: 45\nStatus: PLANNED ]", session.toString());
+        assertEquals("\nSession ID " + id + "\nSubject: Math\nGoal: Practice algebra\nPlanned minutes: 45\nStatus: PLANNED\n-----------------------------------------------\n", session.toString());
     }
 }
