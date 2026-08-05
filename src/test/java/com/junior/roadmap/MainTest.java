@@ -3,8 +3,12 @@ package com.junior.roadmap;
 import org.junit.Test;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 public class MainTest {
 
@@ -96,5 +100,66 @@ public class MainTest {
         assertEquals("Practice Big O", sesh.getGoal());
         assertEquals(Integer.valueOf(30), sesh.getSessionMin());
     }
-}
 
+    @Test
+    public void completingExistingSessionChangesStatusToCompleted() throws InvalidSessionException {
+        SessionRepository repository = new InMemorySessionRepository();
+        SessionService service = new SessionService(repository);
+        UUID id = UUID.randomUUID();
+        repository.save(new Session(id, "Math", "Practice algebra", 45, Status.PLANNED));
+        Scanner sc = new Scanner(id + "\n");
+
+        Main.completeSession(sc, repository, service);
+
+        assertEquals(Status.COMPLETED, repository.findById(id).getStatus());
+    }
+
+    @Test
+    public void completingMissingSessionFailsClearly() throws InvalidSessionException, SessionNotFoundException {
+        SessionRepository repository = new InMemorySessionRepository();
+        SessionService service = new SessionService(repository);
+
+        UUID existingId = UUID.randomUUID();
+        UUID missingId = UUID.randomUUID();
+        repository.save(new Session(existingId, "Math", "Practice algebra", 45, Status.PLANNED));
+
+        SessionNotFoundException exception = assertThrows(
+            SessionNotFoundException.class,
+            () -> service.completeSession(missingId)
+        );
+
+        assertEquals("Session not found.", exception.getMessage());
+        assertEquals(Status.PLANNED, repository.findById(existingId).getStatus());
+    }
+
+    @Test
+    public void deletingExistingSessionRemovesItFromFindAll() throws InvalidSessionException {
+        SessionRepository repository = new InMemorySessionRepository();
+        SessionService service = new SessionService(repository);
+        UUID id = UUID.randomUUID();
+        repository.save(new Session(id, "Math", "Practice algebra", 45, Status.PLANNED));
+        Scanner sc = new Scanner(id + "\n");
+
+        Main.deleteSession(sc, repository, service);
+        assertTrue(repository.findAll().isEmpty());
+        assertNull(repository.findById(id));
+    }
+
+    @Test
+    public void deletingMissingSessionFailsClearly() throws InvalidSessionException, SessionNotFoundException {
+        SessionRepository repository = new InMemorySessionRepository();
+        SessionService service = new SessionService(repository);
+        UUID existingId = UUID.randomUUID();
+        UUID missingId = UUID.randomUUID();
+        repository.save(new Session(existingId, "Math", "Practice algebra", 45, Status.PLANNED));
+
+        SessionNotFoundException exception = assertThrows(
+            SessionNotFoundException.class,
+            () -> service.deleteSession(missingId)
+        );
+
+        assertEquals("Session not found.", exception.getMessage());
+        assertEquals(1, repository.findAll().size());
+        assertEquals(existingId, repository.findAll().get(0).getId());
+    }
+}

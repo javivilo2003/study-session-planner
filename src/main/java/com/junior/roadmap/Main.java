@@ -17,7 +17,9 @@ public class Main {
                 3. Search by subject
                 4. Update session
                 5. Show total amount of minutes remaining in Planned sessions
-                6. Exit
+                6. Set session status to COMPLETE
+                7. Delete a session
+                8. Exit
 
                 """);
     }
@@ -234,6 +236,44 @@ public class Main {
         }
     }
 
+    public static void completeSession(Scanner sc, SessionRepository repository, SessionService service){
+        UUID id;
+        System.out.println("Select the session ID to mark complete: \n" + repository.findAll().toString());
+        System.out.print("Enter the ID: ");
+        try{
+            id = UUID.fromString(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("That is not a valid UUID format. Going back to the main menu.");
+            return;
+        }
+        try {
+            service.completeSession(id);
+            System.out.println("Session completed successfully.");
+        } catch (SessionNotFoundException e) {
+            e.printStackTrace();
+        }
+        
+    }
+
+    public static void deleteSession(Scanner sc, SessionRepository repository, SessionService service){
+        UUID id;
+        System.out.println("Select the session ID to delete: \n" + repository.findAll().toString());
+        System.out.print("Enter the ID: ");
+        try{
+            id = UUID.fromString(sc.nextLine());
+        } catch (Exception e) {
+            System.out.println("That is not a valid UUID format. Going back to the main menu.");
+            return;
+        }
+        try {
+            service.deleteSession(id);
+            System.out.println("Session deleted successfully.");
+        } catch (SessionNotFoundException e) {
+            e.printStackTrace();
+        }
+        
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         SessionRepository repository = new InMemorySessionRepository();
@@ -255,7 +295,7 @@ public class Main {
         do{
             menu();
             try {
-                System.out.print("Choose an option 1-6 -> ");
+                System.out.print("Choose an option 1-8 -> ");
                 option = Integer.parseInt(sc.nextLine());
             } catch (Exception e) {
                 System.out.println("That is not a valid option. Please try again.\n");
@@ -271,8 +311,6 @@ public class Main {
                     } else {
                         System.out.println("Session could not be created.\n");
                     }
-                    
-                    sc.reset();
                     break;
             
                 case 2: 
@@ -288,8 +326,6 @@ public class Main {
                     }else{
                         System.out.println("There are no saved sessions. Add at least 1 and come back.\n");
                     }
-
-                    sc.reset();
                     break;
 
                 case 3: 
@@ -302,8 +338,6 @@ public class Main {
                     } else {
                         System.out.println(result);
                     }
-
-                    sc.reset();
                     break;
 
                 case 4:                 
@@ -314,15 +348,23 @@ public class Main {
                     System.out.println("Total minutes remaining in PLANNED sessions: " + repository.showTotalMin());
                     break;
 
-                case 6: 
+                case 6:
+                    completeSession(sc, repository, service);
+                    break;
+
+                case 7:
+                    deleteSession(sc, repository, service);
+                    break;
+
+                case 8: 
                     System.out.println("Have a good day!!!");
                     break;
 
                 default:
-                    System.out.println("Option must be a number from 1-6. Please try again.\n");
+                    System.out.println("Option must be a number from 1-8. Please try again.\n");
                     break;
             }
-        } while (option != 6);
+        } while (option != 8);
 
         sc.close();
     }

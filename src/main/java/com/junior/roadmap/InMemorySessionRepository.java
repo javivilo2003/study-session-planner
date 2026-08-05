@@ -53,4 +53,9 @@ public class InMemorySessionRepository implements SessionRepository{
         }
         return null;
     }
+
+    @Override
+    public void deleteById(UUID id) {
+        sessions.remove(findById(id));
+    }
 }

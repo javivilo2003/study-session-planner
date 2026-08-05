@@ -10,4 +10,5 @@ public interface SessionRepository {
     List<Session> findBySubject(String input);
     Session findById(UUID id);
     Integer showTotalMin();
+    void deleteById(UUID id);
 }

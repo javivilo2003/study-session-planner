@@ -49,4 +49,24 @@ public class SessionService {
             sesh.setStatus(status);
         }
     }
+
+    public void deleteSession(UUID id) throws SessionNotFoundException{
+        Session delete;
+        delete = repository.findById(id);
+        if (delete == null) {
+            throw new SessionNotFoundException("Session not found.");
+        } else {
+            repository.deleteById(id);
+        }
+    }
+
+    public void completeSession(UUID id) throws SessionNotFoundException{
+        Session completed;
+        completed = repository.findById(id);
+        if (completed == null) {
+            throw new SessionNotFoundException("Session not found.");
+        } else {
+            completed.setStatus(Status.COMPLETED);
+        }
+    }
 }
