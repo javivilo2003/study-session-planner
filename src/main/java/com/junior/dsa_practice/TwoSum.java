@@ -1,16 +1,22 @@
 package com.junior.dsa_practice;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum {
     
     public static int[] twoSum(int[] numbers, int target) {
+        Map<Integer, Integer> seen = new HashMap<>();
+
         for(int i = 0; i < numbers.length; i++){
-            for (int j = i + 1; j < numbers.length; j++) {
-                if (numbers[i] + numbers[j] == target) {
-                    return new int[]{i, j};
-                }
+            int need = target - numbers[i];
+            
+            if (seen.containsKey(need)) {
+                return new int[] {seen.get(need), i};
             }
+
+            seen.put(numbers[i], i);
         }
         return new int[]{};
     } 
