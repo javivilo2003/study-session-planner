@@ -14,7 +14,7 @@ public class Main {
 
                 1. Create study session
                 2. List study sessions
-                3. Search by subject
+                3. Search
                 4. Update session
                 5. Show total amount of minutes remaining in Planned sessions
                 6. Set session status to COMPLETE
@@ -283,7 +283,6 @@ public class Main {
         try {
             repository.save(new Session("Java", "Review constructors", 45));
         } catch (InvalidSessionException e) {
-
             e.printStackTrace();
         }
         try {
@@ -329,15 +328,93 @@ public class Main {
                     break;
 
                 case 3: 
-                    String search;
-                    System.out.print("Search for subject: ");
-                    search = sc.nextLine();
-                    String result = repository.findBySubject(search).toString();
-                    if (result == null || result.equals("[]")) {
-                        System.out.println("No study sessions created with subject -> \"" + search + "\". Create a new session by going back to the main menu and pressing 1.");
-                    } else {
-                        System.out.println(result);
+                    Integer searchBy = -1;
+                    System.out.println("""
+                            
+                            What would you like to search for?
+                            1. Subject
+                            2. Status
+
+                            """);
+                            try {
+                                System.out.print("Enter your choice: ");
+                                searchBy = Integer.parseInt(sc.nextLine());
+                            } catch (Exception e) {
+                                System.out.println("That is not a valid option.\n");
+                                break;
+                            }
+
+                    switch (searchBy) {
+                        case 1:
+                            String searchSubject;
+                            System.out.print("\nSearch for subject: ");
+                            searchSubject = sc.nextLine();
+                            String result = repository.findBySubject(searchSubject).toString();
+                            if (result == null || result.equals("[]")) {
+                                System.out.println("No study sessions created with subject -> \"" + searchSubject + "\". Create a new session by going back to the main menu and pressing 1.");
+                            } else {
+                                System.out.println(result);
+                            }
+                            break;
+                    
+                        case 2:
+                            Integer filterStatus = -1;
+                            System.out.println("""
+
+                                    Filter by status:
+                                    1. PLANNED
+                                    2. COMPLETED
+                                    3. CANCELLED
+
+                                    """);
+                            try{
+                            System.out.print("Enter your choice: ");
+                            filterStatus = Integer.parseInt(sc.nextLine());
+                            } catch (Exception e) {
+                                System.out.println("That is not a valid option.\n");
+                                break;
+                            }
+                            switch (filterStatus) {
+                                case 1:
+                                    String resultPlanned = repository.findByStatus(Status.PLANNED).toString();
+                                    if (resultPlanned == null || resultPlanned.equals("[]")) {
+                                        System.out.println("No study sessions created with status -> \"" + resultPlanned + "\". Create a new session by going back to the main menu and pressing 1.");
+                                    } else {
+                                        System.out.println(resultPlanned);
+                                    }
+                                    break;
+                            
+                                case 2:
+                                    String resultCompleted = repository.findByStatus(Status.COMPLETED).toString();
+                                    if (resultCompleted == null || resultCompleted.equals("[]")) {
+                                        System.out.println("No study sessions created with status -> \"" + resultCompleted + "\". Create a new session by going back to the main menu and pressing 1.");
+                                    } else {
+                                        System.out.println(resultCompleted);
+                                    }
+                                    break;
+
+
+                                case 3:
+                                    String resultCancelled = repository.findByStatus(Status.CANCELLED).toString();
+                                    if (resultCancelled == null || resultCancelled.equals("[]")) {
+                                        System.out.println("No study sessions created with status -> \"" + resultCancelled + "\". Create a new session by going back to the main menu and pressing 1.");
+                                    } else {
+                                        System.out.println(resultCancelled);
+                                    }
+                                    break;
+
+                                default:
+                                    System.out.println("That is not a valid option. Going back to the main menu.");
+                                    break;
+                            }
+                            break;
+
+                        default:
+                            System.out.println("That is not a valid option. Going back to the main menu.");
+                            break;
                     }
+                    
+                    
                     break;
 
                 case 4:                 

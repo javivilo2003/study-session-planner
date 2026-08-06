@@ -11,4 +11,5 @@ public interface SessionRepository {
     Session findById(UUID id);
     Integer showTotalMin();
     void deleteById(UUID id);
+    List<Session> findByStatus(Status status);
 }

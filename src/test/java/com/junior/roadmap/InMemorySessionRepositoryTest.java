@@ -78,6 +78,35 @@ public class InMemorySessionRepositoryTest {
         assertEquals("[]", repository.findBySubject( "dsa").toString());
     }
 
+    @Test
+    public void searchShowsMultipleSessionsWithSameStatus() throws InvalidSessionException {
+        SessionRepository repository = new InMemorySessionRepository();
+        UUID id1 = UUID.randomUUID(); 
+        UUID id2 = UUID.randomUUID(); 
+        UUID id3 = UUID.randomUUID(); 
+
+        repository.save(new Session(id1, "Math", "Practice algebra", 45, Status.COMPLETED));
+        repository.save(new Session(id2, "Java", "Practice java", 60, Status.PLANNED));
+        repository.save(new Session(id3, "DSA", "Practice arrays", 30, Status.COMPLETED));
+
+        assertEquals("[\nSession ID " + id1 + "\nSubject: Math\nGoal: Practice algebra\nPlanned minutes: 45\nStatus: COMPLETED\n-----------------------------------------------\n, " +
+        "\nSession ID " + id3 + "\nSubject: DSA\nGoal: Practice arrays\nPlanned minutes: 30\nStatus: COMPLETED\n-----------------------------------------------\n]", repository.findByStatus(Status.COMPLETED).toString());
+    }
+
+    @Test
+    public void searchShowsNoSessionsWithStatus() throws InvalidSessionException {
+        SessionRepository repository = new InMemorySessionRepository();
+        UUID id1 = UUID.randomUUID(); 
+        UUID id2 = UUID.randomUUID(); 
+        UUID id3 = UUID.randomUUID(); 
+
+        repository.save(new Session(id1, "Math", "Practice algebra", 45, Status.PLANNED));
+        repository.save(new Session(id2, "Java", "Practice java", 60, Status.PLANNED));
+        repository.save(new Session(id3, "DSA", "Practice arrays", 30, Status.COMPLETED));
+
+        assertEquals("[]", repository.findByStatus(Status.CANCELLED).toString());
+    }
+
 
     @Test
     public void findsSessionWithUUID() throws InvalidSessionException,  SessionNotFoundException {

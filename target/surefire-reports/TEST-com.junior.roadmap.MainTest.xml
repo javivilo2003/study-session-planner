@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Users/javier/Library/Java/JavaVirtualMachines/openjdk-25.0.1/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260805230643761_3.jar /Users/javier/Developer/study-session-planner/target/surefire 2026-08-05T23-06-43_710-jvmRun1 surefire-20260805230643761_1tmp surefire_0-20260805230643761_2tmp"/>
+    <property name="sun.java.command" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260806164645612_3.jar /Users/javier/Developer/study-session-planner/target/surefire 2026-08-06T16-46-45_527-jvmRun1 surefire-20260806164645612_1tmp surefire_0-20260806164645612_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/javier/Developer/study-session-planner/target/test-classes:/Users/javier/Developer/study-session-planner/target/classes:/Users/javier/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/javier/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260805230643761_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260806164645612_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-27"/>
     <property name="user.name" value="javier"/>
@@ -55,7 +55,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="shouldCreateSessionFromScannerInput" classname="com.junior.roadmap.MainTest" time="0.002">
+  <testcase name="shouldCreateSessionFromScannerInput" classname="com.junior.roadmap.MainTest" time="0.003">
     <system-out><![CDATA[
 
 Subject: 
@@ -67,7 +67,7 @@ Planned Minutes: ]]></system-out>
   <testcase name="deletingExistingSessionRemovesItFromFindAll" classname="com.junior.roadmap.MainTest" time="0.0">
     <system-out><![CDATA[Select the session ID to delete: 
 [
-Session ID 332af786-406b-444b-b8b0-9b95416d0302
+Session ID d3970414-e8af-44a8-ae80-361be8df2659
 Subject: Math
 Goal: Practice algebra
 Planned minutes: 45
@@ -79,7 +79,7 @@ Enter the ID: Session deleted successfully.
   </testcase>
   <testcase name="cratesValidSession" classname="com.junior.roadmap.MainTest" time="0.0"/>
   <testcase name="deletingMissingSessionFailsClearly" classname="com.junior.roadmap.MainTest" time="0.0"/>
-  <testcase name="rejectsInvalidMinutesExceededValueThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.0">
+  <testcase name="rejectsInvalidMinutesExceededValueThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.001">
     <system-out><![CDATA[
 
 Subject: 
@@ -92,7 +92,7 @@ Planned Minutes: Session exceeded the maximum length for a session 480.
 Planned Minutes: ]]></system-out>
   </testcase>
   <testcase name="completingMissingSessionFailsClearly" classname="com.junior.roadmap.MainTest" time="0.0"/>
-  <testcase name="rejectsInvalidMinutesNegativeThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.001">
+  <testcase name="rejectsInvalidMinutesNegativeThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.0">
     <system-out><![CDATA[
 
 Subject: 
@@ -104,7 +104,7 @@ Planned Minutes: The session's minutes cannot be equal or less than 0. Try again
 
 Planned Minutes: ]]></system-out>
   </testcase>
-  <testcase name="rejectsEmptyGoalThenAcceptsValidGoal" classname="com.junior.roadmap.MainTest" time="0.0">
+  <testcase name="rejectsEmptyGoalThenAcceptsValidGoal" classname="com.junior.roadmap.MainTest" time="0.001">
     <system-out><![CDATA[
 
 Subject: 
@@ -116,10 +116,10 @@ Goal:
 
 Planned Minutes: ]]></system-out>
   </testcase>
-  <testcase name="completingExistingSessionChangesStatusToCompleted" classname="com.junior.roadmap.MainTest" time="0.001">
+  <testcase name="completingExistingSessionChangesStatusToCompleted" classname="com.junior.roadmap.MainTest" time="0.0">
     <system-out><![CDATA[Select the session ID to mark complete: 
 [
-Session ID f90d56b3-53ff-404c-804e-aca222512729
+Session ID 92d1ebd3-0517-40ca-a1ae-38b3238dcca5
 Subject: Math
 Goal: Practice algebra
 Planned minutes: 45
@@ -141,7 +141,7 @@ Planned Minutes: Planned minutes must be a number.
 
 Planned Minutes: ]]></system-out>
   </testcase>
-  <testcase name="rejectsInvalidMinutesZeroThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.001">
+  <testcase name="rejectsInvalidMinutesZeroThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.0">
     <system-out><![CDATA[
 
 Subject: 

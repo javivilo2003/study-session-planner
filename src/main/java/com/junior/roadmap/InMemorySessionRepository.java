@@ -58,4 +58,16 @@ public class InMemorySessionRepository implements SessionRepository{
     public void deleteById(UUID id) {
         sessions.remove(findById(id));
     }
+
+    @Override
+    public List<Session> findByStatus(Status status) {
+        List<Session> matches = new ArrayList<>();
+        for (Session session : sessions) {
+            if (session.getStatus() == (status)) {
+                matches.add(session);  
+            }
+        }
+        return matches;
+    }
+    
 }
