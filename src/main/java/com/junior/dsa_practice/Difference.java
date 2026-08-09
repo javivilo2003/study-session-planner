@@ -23,7 +23,7 @@ public class Difference {
             }
         }
 
-        return null;        
+        throw new IllegalArgumentException("No extra character found.");        
     }
 
     public static void main(String[] args) {
