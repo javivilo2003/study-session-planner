@@ -3,6 +3,7 @@ package com.junior.roadmap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 import java.util.List;
 import java.util.UUID;
@@ -128,5 +129,49 @@ public class InMemorySessionRepositoryTest {
         
         Session found = repository.findById(id2);
         assertNull(found);
+    }
+
+    @Test
+    public void mapReturnsEmptyMap() throws SessionNotFoundException {
+        SessionRepository repository = new InMemorySessionRepository();
+
+        assertEquals(repository.getPlannedMinutesBySubject(), repository.getPlannedMinutesBySubject());
+    }
+
+    @Test
+    public void mapReturnsOneSession() throws SessionNotFoundException, InvalidSessionException {
+        SessionRepository repository = new InMemorySessionRepository();
+        UUID id1 = UUID.randomUUID(); 
+
+        repository.save(new Session(id1, "Java", "Practice java", 60, Status.PLANNED));
+
+
+        assertEquals("{Java=60}", repository.getPlannedMinutesBySubject().toString());
+    }
+
+    @Test
+    public void mapSameSubjectTwice() throws SessionNotFoundException, InvalidSessionException {
+        SessionRepository repository = new InMemorySessionRepository();
+        UUID id1 = UUID.randomUUID(); 
+        UUID id2 = UUID.randomUUID(); 
+
+        repository.save(new Session(id1, "Java", "Practice java", 60, Status.PLANNED));
+        repository.save(new Session(id2, "Java", "Practice java", 45, Status.PLANNED));
+
+
+        assertEquals("{Java=105}", repository.getPlannedMinutesBySubject().toString());
+    }
+
+    @Test
+    public void mapDifferentSubject() throws SessionNotFoundException, InvalidSessionException {
+        SessionRepository repository = new InMemorySessionRepository();
+        UUID id1 = UUID.randomUUID(); 
+        UUID id2 = UUID.randomUUID(); 
+
+        repository.save(new Session(id1, "Java", "Practice java", 60, Status.PLANNED));
+        repository.save(new Session(id2, "DSA", "Practice java", 45, Status.PLANNED));
+
+
+        assertEquals("{Java=60, DSA=45}", repository.getPlannedMinutesBySubject().toString());
     }
 }

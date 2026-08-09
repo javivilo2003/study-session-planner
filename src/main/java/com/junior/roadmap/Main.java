@@ -14,12 +14,13 @@ public class Main {
 
                 1. Create study session
                 2. List study sessions
-                3. Search
-                4. Update session
-                5. Show total amount of minutes remaining in Planned sessions
-                6. Set session status to COMPLETE
-                7. Delete a session
-                8. Exit
+                3. Sessions summary
+                4. Search
+                5. Update session
+                6. Show total amount of minutes remaining in Planned sessions
+                7. Set session status to COMPLETE
+                8. Delete a session
+                9. Exit
 
                 """);
     }
@@ -294,7 +295,7 @@ public class Main {
         do{
             menu();
             try {
-                System.out.print("Choose an option 1-8 -> ");
+                System.out.print("Choose an option 1-9 -> ");
                 option = Integer.parseInt(sc.nextLine());
             } catch (Exception e) {
                 System.out.println("That is not a valid option. Please try again.\n");
@@ -327,7 +328,16 @@ public class Main {
                     }
                     break;
 
-                case 3: 
+                case 3:
+                    System.out.println("\nSessions summary: ");
+                    try {
+                        service.showMinSummaryBySubject();
+                    } catch (SessionNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case 4: 
                     Integer searchBy = -1;
                     System.out.println("""
                             
@@ -417,23 +427,23 @@ public class Main {
                     
                     break;
 
-                case 4:                 
+                case 5:                 
                     updateSesh(sc, service, repository);
                     break;
 
-                case 5: 
+                case 6: 
                     System.out.println("Total minutes remaining in PLANNED sessions: " + repository.showTotalMin());
                     break;
 
-                case 6:
+                case 7:
                     completeSession(sc, repository, service);
                     break;
 
-                case 7:
+                case 8:
                     deleteSession(sc, repository, service);
                     break;
 
-                case 8: 
+                case 9: 
                     System.out.println("Have a good day!!!");
                     break;
 
@@ -441,7 +451,7 @@ public class Main {
                     System.out.println("Option must be a number from 1-8. Please try again.\n");
                     break;
             }
-        } while (option != 8);
+        } while (option != 9);
 
         sc.close();
     }

@@ -1,6 +1,7 @@
 package com.junior.roadmap;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -12,4 +13,5 @@ public interface SessionRepository {
     Integer showTotalMin();
     void deleteById(UUID id);
     List<Session> findByStatus(Status status);
+    Map<String, Integer> getPlannedMinutesBySubject();
 }

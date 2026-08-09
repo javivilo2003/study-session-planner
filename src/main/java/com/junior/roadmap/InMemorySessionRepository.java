@@ -1,7 +1,9 @@
 package com.junior.roadmap;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class InMemorySessionRepository implements SessionRepository{
@@ -69,5 +71,19 @@ public class InMemorySessionRepository implements SessionRepository{
         }
         return matches;
     }
+
+    @Override
+    public Map<String, Integer> getPlannedMinutesBySubject() {
+        Map<String, Integer> totales = new HashMap<>();
+        for (Session session : sessions) {
+            if (session.getStatus() == Status.PLANNED) {
+                totales.put(session.getSubject(), totales.getOrDefault(session.getSubject(), 0) + session.getSessionMin());
+            }
+        }
+
+        return totales;
+    }
     
+    
+
 }

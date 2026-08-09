@@ -69,4 +69,14 @@ public class SessionService {
             completed.setStatus(Status.COMPLETED);
         }
     }
+
+    public void showMinSummaryBySubject() throws SessionNotFoundException{
+        if (repository.getPlannedMinutesBySubject() == null || repository.getPlannedMinutesBySubject().isEmpty()) {
+            throw new SessionNotFoundException("Couldn't find any sessions with that subject.");
+        } else {
+            repository.getPlannedMinutesBySubject().forEach((key, value) -> {
+                System.out.println(key + ": " + value + " minutes");
+            });
+        }
+    }
 }
