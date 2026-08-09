@@ -1,6 +1,12 @@
-package com.junior.roadmap;
+package com.junior.roadmap.service;
 
 import java.util.UUID;
+
+import com.junior.roadmap.domain.Session;
+import com.junior.roadmap.domain.Status;
+import com.junior.roadmap.exceptions.InvalidSessionException;
+import com.junior.roadmap.exceptions.SessionNotFoundException;
+import com.junior.roadmap.repository.SessionRepository;
 
 public class SessionService {
 

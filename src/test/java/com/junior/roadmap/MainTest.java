@@ -2,6 +2,14 @@ package com.junior.roadmap;
 
 import org.junit.Test;
 
+import com.junior.roadmap.domain.Session;
+import com.junior.roadmap.domain.Status;
+import com.junior.roadmap.exceptions.InvalidSessionException;
+import com.junior.roadmap.exceptions.SessionNotFoundException;
+import com.junior.roadmap.repository.InMemorySessionRepository;
+import com.junior.roadmap.repository.SessionRepository;
+import com.junior.roadmap.service.SessionService;
+
 import java.util.Scanner;
 import java.util.UUID;
 

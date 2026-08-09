@@ -2,6 +2,10 @@ package com.junior.roadmap;
 
 import org.junit.Test;
 
+import com.junior.roadmap.domain.Session;
+import com.junior.roadmap.domain.Status;
+import com.junior.roadmap.exceptions.InvalidSessionException;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.UUID;

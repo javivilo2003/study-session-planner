@@ -3,6 +3,14 @@ package com.junior.roadmap;
 import java.util.Scanner;
 import java.util.UUID;
 
+import com.junior.roadmap.domain.Session;
+import com.junior.roadmap.domain.Status;
+import com.junior.roadmap.exceptions.InvalidSessionException;
+import com.junior.roadmap.exceptions.SessionNotFoundException;
+import com.junior.roadmap.repository.InMemorySessionRepository;
+import com.junior.roadmap.repository.SessionRepository;
+import com.junior.roadmap.service.SessionService;
+
 public class Main {
 
     static void menu(){

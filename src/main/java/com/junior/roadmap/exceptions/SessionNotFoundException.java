@@ -1,4 +1,4 @@
-package com.junior.roadmap;
+package com.junior.roadmap.exceptions;
 
 public class SessionNotFoundException extends Exception{
     

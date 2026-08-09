@@ -1,6 +1,8 @@
-package com.junior.roadmap;
+package com.junior.roadmap.domain;
 
 import java.util.UUID;
+
+import com.junior.roadmap.exceptions.InvalidSessionException;
 
 public class Session {
     
