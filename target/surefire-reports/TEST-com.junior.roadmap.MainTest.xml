@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.roadmap.MainTest" time="0.008" tests="12" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.roadmap.MainTest" time="0.014" tests="12" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="25"/>
+    <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.class.path" value="/Users/javier/Developer/study-session-planner/target/test-classes:/Users/javier/Developer/study-session-planner/target/classes:/Users/javier/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/javier/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="java.vm.specification.version" value="25"/>
+    <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="/Users/javier/Library/Java/JavaVirtualMachines/openjdk-25.0.1/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260806164645612_3.jar /Users/javier/Developer/study-session-planner/target/surefire 2026-08-06T16-46-45_527-jvmRun1 surefire-20260806164645612_1tmp surefire_0-20260806164645612_2tmp"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260809233123649_3.jar /Users/javier/Developer/study-session-planner/target/surefire 2026-08-09T23-31-23_592-jvmRun1 surefire-20260809233123649_1tmp surefire_0-20260809233123649_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/javier/Developer/study-session-planner/target/test-classes:/Users/javier/Developer/study-session-planner/target/classes:/Users/javier/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/javier/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/javier"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2025-10-21"/>
-    <property name="java.home" value="/Users/javier/Library/Java/JavaVirtualMachines/openjdk-25.0.1/Contents/Home"/>
+    <property name="java.version.date" value="2024-10-15"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"/>
     <property name="file.separator" value="/"/>
     <property name="basedir" value="/Users/javier/Developer/study-session-planner"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260806164645612_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/javier/Developer/study-session-planner/target/surefire/surefirebooter-20260809233123649_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="25.0.1+8-27"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="21.0.5+11-LTS"/>
     <property name="user.name" value="javier"/>
     <property name="stdout.encoding" value="UTF-8"/>
     <property name="path.separator" value=":"/>
@@ -38,10 +40,11 @@
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.5+11"/>
     <property name="localRepository" value="/Users/javier/.m2/repository"/>
-    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
     <property name="java.io.tmpdir" value="/var/folders/vp/vdy15b1d7wg_jyvdz0fxxk0w0000gn/T/"/>
-    <property name="java.version" value="25.0.1"/>
+    <property name="java.version" value="21.0.5"/>
     <property name="user.dir" value="/Users/javier/Developer/study-session-planner"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
@@ -49,13 +52,13 @@
     <property name="java.library.path" value="/Users/javier/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="UTF-8"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="25.0.1+8-27"/>
-    <property name="stdin.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.5+11-LTS"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="java.class.version" value="69.0"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="shouldCreateSessionFromScannerInput" classname="com.junior.roadmap.MainTest" time="0.003">
+  <testcase name="shouldCreateSessionFromScannerInput" classname="com.junior.roadmap.MainTest" time="0.004">
     <system-out><![CDATA[
 
 Subject: 
@@ -64,10 +67,10 @@ Goal:
 
 Planned Minutes: ]]></system-out>
   </testcase>
-  <testcase name="deletingExistingSessionRemovesItFromFindAll" classname="com.junior.roadmap.MainTest" time="0.0">
+  <testcase name="deletingExistingSessionRemovesItFromFindAll" classname="com.junior.roadmap.MainTest" time="0.001">
     <system-out><![CDATA[Select the session ID to delete: 
 [
-Session ID d3970414-e8af-44a8-ae80-361be8df2659
+Session ID 759bd413-7bd9-4d43-aeaf-a38c76744216
 Subject: Math
 Goal: Practice algebra
 Planned minutes: 45
@@ -92,7 +95,7 @@ Planned Minutes: Session exceeded the maximum length for a session 480.
 Planned Minutes: ]]></system-out>
   </testcase>
   <testcase name="completingMissingSessionFailsClearly" classname="com.junior.roadmap.MainTest" time="0.0"/>
-  <testcase name="rejectsInvalidMinutesNegativeThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.0">
+  <testcase name="rejectsInvalidMinutesNegativeThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.001">
     <system-out><![CDATA[
 
 Subject: 
@@ -119,7 +122,7 @@ Planned Minutes: ]]></system-out>
   <testcase name="completingExistingSessionChangesStatusToCompleted" classname="com.junior.roadmap.MainTest" time="0.0">
     <system-out><![CDATA[Select the session ID to mark complete: 
 [
-Session ID 92d1ebd3-0517-40ca-a1ae-38b3238dcca5
+Session ID acae2d79-6218-4872-a495-5c4aafb1b62e
 Subject: Math
 Goal: Practice algebra
 Planned minutes: 45
@@ -141,7 +144,7 @@ Planned Minutes: Planned minutes must be a number.
 
 Planned Minutes: ]]></system-out>
   </testcase>
-  <testcase name="rejectsInvalidMinutesZeroThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.0">
+  <testcase name="rejectsInvalidMinutesZeroThenAcceptsValidMinutes" classname="com.junior.roadmap.MainTest" time="0.001">
     <system-out><![CDATA[
 
 Subject: 
@@ -153,7 +156,7 @@ Planned Minutes: The session's minutes cannot be equal or less than 0. Try again
 
 Planned Minutes: ]]></system-out>
   </testcase>
-  <testcase name="rejectsEmptySubjectThenAcceptsValidSubject" classname="com.junior.roadmap.MainTest" time="0.0">
+  <testcase name="rejectsEmptySubjectThenAcceptsValidSubject" classname="com.junior.roadmap.MainTest" time="0.001">
     <system-out><![CDATA[
 
 Subject: Subject cannot be empty. Try again.
