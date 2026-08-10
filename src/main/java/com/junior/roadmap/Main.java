@@ -197,7 +197,6 @@ public class Main {
                     System.out.println("That is not a valid number format. Going back to the main menu.");
                     break;
                 }
-                
 
                 switch (newStatus) {
                     case 1:
@@ -430,9 +429,7 @@ public class Main {
                         default:
                             System.out.println("That is not a valid option. Going back to the main menu.");
                             break;
-                    }
-                    
-                    
+                    }     
                     break;
 
                 case 5:                 

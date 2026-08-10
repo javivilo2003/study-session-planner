@@ -6,8 +6,6 @@ import com.junior.roadmap.exceptions.InvalidSessionException;
 
 public class Session {
     
-
-
     private UUID id;
     private String subject;
     private String goal;

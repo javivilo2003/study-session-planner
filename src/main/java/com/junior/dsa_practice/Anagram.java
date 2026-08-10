@@ -22,7 +22,6 @@ public class Anagram {
         }
 
         return Arrays.equals(check, check2);
-
     }
      
     public static void main(String[] args) {

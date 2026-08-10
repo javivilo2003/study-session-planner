@@ -1,13 +1,6 @@
-com/junior/roadmap/Status.class
 com/junior/dsa_practice/Palindrome.class
-com/junior/roadmap/SessionNotFoundException.class
-com/junior/roadmap/SessionRepository.class
 com/junior/dsa_practice/Anagram.class
-com/junior/roadmap/Session.class
-com/junior/roadmap/InMemorySessionRepository.class
-com/junior/roadmap/SessionService.class
 com/junior/dsa_practice/ArrayListKata.class
 com/junior/dsa_practice/ContainsDuplicate.class
 com/junior/dsa_practice/TwoSum.class
-com/junior/roadmap/InvalidSessionException.class
 com/junior/roadmap/Main.class
