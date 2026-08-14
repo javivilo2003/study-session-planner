@@ -1,0 +1,5 @@
+
+5d8e406d-730c-4792-9f0b-fb0d50a6800c | Math | Practice algebra | 45 | PLANNED
+763f0212-2973-4277-a702-e4b69a831338 | DSA | Practice algorithms | 20 | PLANNED
+e4fa729e-2865-4ccd-a8bc-2bed63d4f952 | Java | Practice abstract classes | 15 | PLANNED
+f5695ba6-f0da-494d-9e49-b8b50bb04932 | SQL | Practice queries | 65 | PLANNED
