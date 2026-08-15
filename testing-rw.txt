@@ -1,3 +1,0 @@
-2a74ce1c-7535-41fa-bf45-9e4c2d36fca7 | DSA | Practice read | 50 | PLANNED
-2a74ce1c-7535-41fa-bf45-9e4c2d36fca8 | Java | Practice write | 20 | COMPLETED
-2a74ce1c-7535-41fa-bf45-9e4c2d36fca9 | Math | Practice algebra | 35 | PLANNED
