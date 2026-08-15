@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.dsa_practice.ContainsDuplicateTest" time="0.001" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.junior.roadmap.FileTest" time="0.053" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -55,6 +55,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testDoesNotContainDuplicate" classname="com.junior.dsa_practice.ContainsDuplicateTest" time="0.0"/>
-  <testcase name="testContainsDuplicate" classname="com.junior.dsa_practice.ContainsDuplicateTest" time="0.0"/>
+  <testcase name="loadsOneSavedSession" classname="com.junior.roadmap.FileTest" time="0.015"/>
+  <testcase name="writesMultipleSessions" classname="com.junior.roadmap.FileTest" time="0.001"/>
+  <testcase name="writeAllOverwritesExistingSessions" classname="com.junior.roadmap.FileTest" time="0.0"/>
+  <testcase name="savedSessionLoadsAfterRepositoryRecreation" classname="com.junior.roadmap.FileTest" time="0.001"/>
+  <testcase name="loadsMultipleSavedSessions" classname="com.junior.roadmap.FileTest" time="0.001"/>
+  <testcase name="writesASession" classname="com.junior.roadmap.FileTest" time="0.0"/>
+  <testcase name="writesASessionInTheCorrectFormat" classname="com.junior.roadmap.FileTest" time="0.001"/>
 </testsuite>

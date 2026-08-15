@@ -16,7 +16,7 @@ public class SessionFileWriter{
     }
 
     public String format(Session session){
-        String sessionFormated = session.getId() + " | " + session.getSubject() + " | " + session.getGoal() + " | " + session.getSessionMin() + " | " + session.getStatus() + "\n";
+        String sessionFormated = session.getId() + " | " + session.getSubject() + " | " + session.getGoal() + " | " + session.getSessionMin() + " | " + session.getStatus();
 
         return sessionFormated;    
     }
@@ -26,6 +26,7 @@ public class SessionFileWriter{
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
             bw.write(line);
+            bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,14 +34,15 @@ public class SessionFileWriter{
 
     public void writeAll(List<Session> sessions){
 
-        for (Session session : sessions) {
-            String line = format(session);
-
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+            for(Session sesh : sessions){
+                String line = format(sesh);
                 bw.write(line);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } 
-        }
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        
     }
 }
