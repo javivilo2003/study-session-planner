@@ -10,19 +10,22 @@ The user will be able to:
  - Show a summary of the planned sessions.
  - Mark a session as COMPLETE.
 
-A session contains: 
+**A session contains:** 
 - Subject
 - Goal of the session
 - Date
 - Planned minutes
 - Status
 
-No set up needed, only run main in terminal.
+---
+**SET UP**
 
-Commands for testing:
+Commands for testing *(49 feature tests implemented)*:
  - mvn test
 
-Architecture: 
+---
+
+**Architecture:** 
  - Domain.
  - Repository.
  - Service.
@@ -31,3 +34,7 @@ Architecture:
 
 This is a CLI app. So it is kind of slow for a user to really use this program. No GUI makes this a boring app, but I used it to practice and refresh everything I learned through school. Although it still doesn't have a persistance layer or Data Base. So it is still not fully finished.
  
+*Persistence v1.0*
+
+Now aplication has a level of persistence. We are saving the sessions created in a .txt. Through reader and writer classes, we are able to convert plain text from a file into a java object and vise versa so the app always remembers what the user has created/modified.
+

@@ -10,6 +10,7 @@ import com.junior.roadmap.domain.Status;
 
 public interface SessionRepository {
     void save(Session sesh);
+    default void persistChanges() {}
     List<Session> findAll();
     List<Session> findBySubject(String input);
     Session findById(UUID id);

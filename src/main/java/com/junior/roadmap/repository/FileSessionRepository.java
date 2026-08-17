@@ -85,6 +85,11 @@ public class FileSessionRepository implements SessionRepository{
     }
 
     @Override
+    public void persistChanges() {
+        writer.writeAll(sessionsInFile);
+    }
+
+    @Override
     public Integer showTotalMin() {
         Integer total = 0;
         for (Session session : sessionsInFile) {

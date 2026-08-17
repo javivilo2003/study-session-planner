@@ -21,19 +21,35 @@ public class SessionFileReader {
     public SessionFileReader(){};
 
     public Session parse(String fileSesh) throws InvalidSessionException{
+        UUID id;
+        Integer minutes;
+        Status status;
+
         String[] parts = fileSesh.split(" \\| ", -1);
 
         if (parts.length != 5) {
             throw new InvalidSessionException("Invalid session line: " + fileSesh);
         }
 
-        UUID id = UUID.fromString(parts[0]);
-        String subject = parts[1];
-        String goal = parts[2];
-        Integer minutes = Integer.parseInt(parts[3].trim());
-        Status status = Status.valueOf(parts[4].trim());
+        try {
+            id = UUID.fromString(parts[0]);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidSessionException("Session ID invalid format or empty.");
+        }
 
-        return new Session(id, subject, goal, minutes, status);
+        try {
+            minutes = Integer.parseInt(parts[3].trim());
+        } catch (NumberFormatException e) {
+            throw new InvalidSessionException("Invalid number format for minutes.");
+        }
+
+        try {
+            status = Status.valueOf(parts[4].trim());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidSessionException("Invalid status or empty status.");
+        }
+
+        return new Session(id, parts[1], parts[2], minutes, status);
     }
 
     public List<Session> readAll(){
@@ -43,11 +59,15 @@ public class SessionFileReader {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             while ((line = br.readLine()) != null) {
                 if (!line.isBlank()) {
-                    sessions.add(parse(line));
+                    try{
+                        sessions.add(parse(line));
+                    } catch (InvalidSessionException e){
+                        
+                    }
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Something went wrong reading the file.");
         }
 
         return sessions;

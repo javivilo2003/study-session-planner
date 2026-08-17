@@ -23,6 +23,7 @@ public class SessionService {
             throw new SessionNotFoundException("Session not found.");
         } else {
             sesh.setSubject(subject);
+            repository.persistChanges();
         }
     }
     
@@ -33,6 +34,7 @@ public class SessionService {
             throw new SessionNotFoundException("Session not found.");
         } else {
             sesh.setGoal(goal);
+            repository.persistChanges();
         }
     }
 
@@ -43,6 +45,7 @@ public class SessionService {
             throw new SessionNotFoundException("Session not found.");
         } else {
             sesh.setSessionMin(minutes);
+            repository.persistChanges();
         }
     }
 
@@ -53,6 +56,7 @@ public class SessionService {
             throw new SessionNotFoundException("Session not found.");
         } else {
             sesh.setStatus(status);
+            repository.persistChanges();
         }
     }
 
@@ -73,6 +77,7 @@ public class SessionService {
             throw new SessionNotFoundException("Session not found.");
         } else {
             completed.setStatus(Status.COMPLETED);
+            repository.persistChanges();
         }
     }
 

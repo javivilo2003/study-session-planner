@@ -2,6 +2,7 @@ package com.junior.roadmap;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,6 +19,7 @@ import com.junior.roadmap.exceptions.InvalidSessionException;
 import com.junior.roadmap.repository.FileSessionRepository;
 import com.junior.roadmap.repository.persistence.SessionFileReader;
 import com.junior.roadmap.repository.persistence.SessionFileWriter;
+import com.junior.roadmap.service.SessionService;
 
 public class FileTest {
     
@@ -152,5 +154,119 @@ public class FileTest {
         assertEquals("Practice algebra", loadedSessions.get(0).getGoal());
         assertEquals(Integer.valueOf(45), loadedSessions.get(0).getSessionMin());
         assertEquals(Status.PLANNED, loadedSessions.get(0).getStatus());
+    }
+
+    @Test
+    public void updatedSubjectIsWrittenToFile() throws Exception{
+        Path tempFile = Files.createTempFile("sessions-test", ".txt");
+        Session session = new Session(UUID.randomUUID(), "Math", "Practice algebra", 45, Status.PLANNED);
+
+        FileSessionRepository repository = new FileSessionRepository(
+            new SessionFileReader(tempFile.toString()),
+            new SessionFileWriter(tempFile.toString())
+        );
+        SessionService service = new SessionService(repository);
+        repository.save(session);
+
+        service.updateSubject(session.getId(), "Java");
+
+        FileSessionRepository recreatedRepository = new FileSessionRepository(
+            new SessionFileReader(tempFile.toString()),
+            new SessionFileWriter(tempFile.toString())
+        );
+
+        assertEquals("Java", recreatedRepository.findById(session.getId()).getSubject());
+    }
+
+    @Test
+    public void completedSessionIsWrittenToFile() throws Exception{
+        Path tempFile = Files.createTempFile("sessions-test", ".txt");
+        Session session = new Session(UUID.randomUUID(), "Math", "Practice algebra", 45, Status.PLANNED);
+
+        FileSessionRepository repository = new FileSessionRepository(
+            new SessionFileReader(tempFile.toString()),
+            new SessionFileWriter(tempFile.toString())
+        );
+        SessionService service = new SessionService(repository);
+        repository.save(session);
+
+        service.completeSession(session.getId());
+
+        FileSessionRepository recreatedRepository = new FileSessionRepository(
+            new SessionFileReader(tempFile.toString()),
+            new SessionFileWriter(tempFile.toString())
+        );
+
+        assertEquals(Status.COMPLETED, recreatedRepository.findById(session.getId()).getStatus());
+    }
+
+    @Test
+    public void skipsCorruptSessionLineAndLoadsValidLines() throws Exception{
+        Path tempFile = Files.createTempFile("sessions-test", ".txt");
+        UUID id = UUID.randomUUID();
+        UUID id2 = UUID.randomUUID();
+        UUID id3 = UUID.randomUUID();
+        Files.writeString(tempFile,
+            id + " | Math | Practice algebra | 45 | PLANNED\n" +
+            id2 + " | DSA | Practice algorithms | pp | Hello\n" +
+            id3 + " | DSA | Practice algorithms | 20 | COMPLETED\n"
+        );
+
+        FileSessionRepository repository = new FileSessionRepository(
+            new SessionFileReader(tempFile.toString()),
+            new SessionFileWriter(tempFile.toString())
+        );
+
+        List<Session> sessionsRead = repository.findAll();
+
+        assertEquals(2, sessionsRead.size());
+        assertEquals(id, sessionsRead.get(0).getId());
+        assertEquals("Math", sessionsRead.get(0).getSubject());
+        assertEquals("Practice algebra", sessionsRead.get(0).getGoal());
+        assertEquals(Integer.valueOf(45), sessionsRead.get(0).getSessionMin());
+        assertEquals(Status.PLANNED, sessionsRead.get(0).getStatus());
+
+        assertEquals(id3, sessionsRead.get(1).getId());
+        assertEquals("DSA", sessionsRead.get(1).getSubject());
+        assertEquals("Practice algorithms", sessionsRead.get(1).getGoal());
+        assertEquals(Integer.valueOf(20), sessionsRead.get(1).getSessionMin());
+        assertEquals(Status.COMPLETED, sessionsRead.get(1).getStatus());
+
+    }
+
+    @Test
+    public void rejectsLineWithMissingFields() throws Exception{
+        SessionFileReader reader = new SessionFileReader();
+
+        assertThrows(InvalidSessionException.class, () -> {
+            reader.parse("Math | Practice algebra | abc | PLANNED");
+        }); 
+    }
+
+    @Test
+    public void rejectsInvalidMinutes() throws Exception{
+        SessionFileReader reader = new SessionFileReader();
+
+        assertThrows(InvalidSessionException.class, () -> {
+            reader.parse("550e8400-e29b-41d4-a716-446655440000 | Math | Practice algebra | abc | PLANNED");
+        });
+    }
+
+    @Test
+    public void rejectsInvalidStatus() throws Exception{
+        SessionFileReader reader = new SessionFileReader();
+
+        assertThrows(InvalidSessionException.class, () -> {
+            reader.parse("550e8400-e29b-41d4-a716-446655440000 | Math | Practice algebra | 20 | HELLO");
+        });
+    }
+
+    @Test
+    public void rejectsInvalidUuid() throws Exception{
+        SessionFileReader reader = new SessionFileReader();
+
+        assertThrows(InvalidSessionException.class, () -> {
+            reader.parse("007 | Math | Practice algebra | 20 | PLANNED");
+        });
     }
 }

@@ -7,8 +7,10 @@ import com.junior.roadmap.domain.Session;
 import com.junior.roadmap.domain.Status;
 import com.junior.roadmap.exceptions.InvalidSessionException;
 import com.junior.roadmap.exceptions.SessionNotFoundException;
-import com.junior.roadmap.repository.InMemorySessionRepository;
+import com.junior.roadmap.repository.FileSessionRepository;
 import com.junior.roadmap.repository.SessionRepository;
+import com.junior.roadmap.repository.persistence.SessionFileReader;
+import com.junior.roadmap.repository.persistence.SessionFileWriter;
 import com.junior.roadmap.service.SessionService;
 
 public class Main {
@@ -284,20 +286,12 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        SessionRepository repository = new InMemorySessionRepository();
+        SessionRepository repository = new FileSessionRepository(
+            new SessionFileReader("sessions.txt"),
+            new SessionFileWriter("sessions.txt")
+        );
         SessionService service = new SessionService(repository);
         Integer option = -1;
-
-        try {
-            repository.save(new Session("Java", "Review constructors", 45));
-        } catch (InvalidSessionException e) {
-            e.printStackTrace();
-        }
-        try {
-            repository.save(new Session("DSA", "Practice arrays", 30, Status.COMPLETED));
-        } catch (InvalidSessionException e) {
-            e.printStackTrace();
-        }
 
         do{
             menu();
