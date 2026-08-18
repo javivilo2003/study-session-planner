@@ -1,40 +1,106 @@
-# study-session-planner
-This is a small java based CLI project called Study Session Planner. 
-It helps the user record and review planned study sessions.
-The user will be able to:
- - Create study sessions.
- - List the sessions created in the past.
- - Update past sessions.
- - Change status of each session.
- - Delete a session.
- - Show a summary of the planned sessions.
- - Mark a session as COMPLETE.
+# Study Session Planner
 
-**A session contains:** 
-- Subject
-- Goal of the session
-- Date
-- Planned minutes
-- Status
+Study Session Planner is a Java 21 command-line application for planning and reviewing study sessions. It was built as a portfolio project to practice a layered Java architecture, validation, repository abstractions, file persistence, and automated tests.
 
----
-**SET UP**
+## Problem
 
-Commands for testing *(49 feature tests implemented)*:
- - mvn test
+Students often plan study time in scattered notes or mental lists, which makes it hard to see what is planned, what is complete, and how much time remains. This app keeps study sessions in one local CLI workflow so a user can create sessions, update them, complete them, and review planned study time by subject.
 
----
+## Features
 
-**Architecture:** 
- - Domain.
- - Repository.
- - Service.
- - Exceptions.
- - App.
+- Create a study session with a subject, goal, planned minutes, and status.
+- List saved study sessions.
+- Search sessions by subject or status.
+- Update a session's subject, goal, planned minutes, or status.
+- Mark a session as `COMPLETED`.
+- Delete a session.
+- Show planned-minute summaries by subject.
+- Show the total remaining planned minutes.
+- Persist sessions between app runs using a local text file.
 
-This is a CLI app. So it is kind of slow for a user to really use this program. No GUI makes this a boring app, but I used it to practice and refresh everything I learned through school. Although it still doesn't have a persistance layer or Data Base. So it is still not fully finished.
- 
-*Persistence v1.0*
+## Session Data
 
-Now aplication has a level of persistence. We are saving the sessions created in a .txt. Through reader and writer classes, we are able to convert plain text from a file into a java object and vise versa so the app always remembers what the user has created/modified.
+Each session contains:
 
+- `id`: generated UUID
+- `subject`: study subject
+- `goal`: goal for the session
+- `planned minutes`: integer duration
+- `status`: session state, such as `PLANNED` or `COMPLETED`
+
+## Architecture
+
+The project uses a small layered structure:
+
+- `domain`: core session model and status enum.
+- `repository`: repository interface plus in-memory and file-backed implementations.
+- `repository.persistence`: text-file reader and writer classes.
+- `service`: business operations that coordinate validation, updates, completion, and deletion.
+- `exceptions`: custom exceptions for invalid sessions and missing sessions.
+- `Main`: CLI menu and user input flow.
+
+## Requirements
+
+- Java 21
+- Maven 3.9 or newer recommended
+
+## Commands
+
+Run the CLI with Maven:
+
+```bash
+mvn exec:java
+```
+
+Run tests:
+
+```bash
+mvn test
+```
+
+Build the project:
+
+```bash
+mvn package
+```
+
+Run the packaged JAR after building:
+
+```bash
+java -jar target/study-session-planner-1.0.0.jar
+```
+
+Alternative direct class run:
+
+```bash
+mvn compile
+java -cp target/classes com.junior.roadmap.Main
+```
+
+## Persistence Behavior
+
+The CLI reads from `sessions.txt` when the app starts and writes back to the same file whenever sessions are created, updated, completed, or deleted.
+
+Each saved session is stored as one text line using this format:
+
+```text
+UUID | subject | goal | plannedMinutes | status
+```
+
+The file is local to the directory where the app is run. If `sessions.txt` does not exist or cannot be read, the app starts with an empty session list and prints a file-read warning.
+
+## Limitations
+
+- CLI-only interface; there is no GUI or web UI.
+- Persistence uses a plain text file, not a database.
+- Search is limited to the options implemented in the menu.
+- Invalid persisted lines are skipped instead of repaired.
+- The app assumes it is run from a writable directory so `sessions.txt` can be created or updated.
+
+## Next Steps
+
+- Improve file-read messaging when `sessions.txt` does not exist yet.
+- Add a database-backed repository implementation.
+- Add richer filtering by date, subject, and status.
+- Add a simple GUI or web interface.
+- Export summaries to CSV or another report format.
